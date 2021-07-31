@@ -25,7 +25,7 @@ export class ResponseUtil {
     })
   }
   
-  static sendError (res: Response, msg?: string, httpStatusCode = 500) {
+  static sendError (res: Response, msg = 'SERVER ERROR', httpStatusCode = 500) {
     res.status(httpStatusCode).send({
       msg
     })

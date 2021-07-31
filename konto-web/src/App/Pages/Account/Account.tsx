@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { axiosIntance } from '../../api';
+import { axiosIntance } from 'App/api';
 
 const User: React.FC = () => {
   function updateAccountList() {
