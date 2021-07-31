@@ -6,12 +6,14 @@
   "main": "main.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only ./src/main.ts",
+    "db": "node ./scripts/start-db.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NecoNeo",
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^4.0.1",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
