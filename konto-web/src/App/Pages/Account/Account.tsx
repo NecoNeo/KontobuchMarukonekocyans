@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { axiosIntance } from 'App/api';
+import { axiosIntance } from 'App/API';
+import AccountCard from './Components/AccountCard/AccountCard';
 
 const User: React.FC = () => {
   function updateAccountList() {
@@ -7,7 +8,7 @@ const User: React.FC = () => {
       setAccountList(response.data.data);
     });
   }
-  const [accountList, setAccountList] = useState<{ id?: unknown; name?: string }[]>([]);
+  const [accountList, setAccountList] = useState<{ _id: string; name?: string }[]>([]);
   const [createName, setCreateName] = useState<string>('');
 
   useEffect(() => {
@@ -22,12 +23,20 @@ const User: React.FC = () => {
     updateAccountList();
   };
 
+  const deleteAccount = async (_id: string) => {
+    await axiosIntance.post('account/deleteAccount', {
+      _id,
+    });
+    updateAccountList();
+  };
+
   return (
     <div>
-      <div>User Page:</div>
+      <div>{'(<ゝω·)☆ USER PAGE:'}</div>
       <div>
         {accountList.map((account, index) => (
-          <div key={index}>{account.name || 'NO NAME'}</div>
+          // <div key={index}>{account.name || 'NO NAME'}</div>
+          <AccountCard key={index} name={account.name} delete={() => deleteAccount(account._id)}></AccountCard>
         ))}
         {accountList.length ? '' : 'NO ACCOUNT'}
       </div>
